@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --acid: #CCFF00;
+  --bg: #0A0A0A;
+  --card: #111111;
+  --border: #1E1E1E;
+  --muted: #2A2A2A;
+  --text-dim: #666666;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Grid texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root { position: relative; z-index: 1; }
+
+/* Display font */
+.font-display { font-family: 'Bebas Neue', Impact, sans-serif; }
+.font-mono { font-family: 'Space Mono', monospace; }
+
+/* Acid accent */
+.text-acid { color: var(--acid); }
+.bg-acid { background: var(--acid); }
+.border-acid { border-color: var(--acid); }
+
+/* Cards */
+.forge-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 2px; }
+
+/* Acid button */
+.btn-acid {
+  background: var(--acid);
+  color: #000;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-acid:hover { background: #d4ff1a; transform: translateY(-1px); }
+.btn-acid:active { transform: translateY(0); }
+
+/* Ghost button */
+.btn-ghost {
+  background: transparent;
+  color: #888;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-ghost:hover { border-color: #444; color: #fff; }
+
+/* Input */
+.forge-input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+.forge-input::placeholder { color: #444; }
+.forge-input:focus { border-color: var(--acid); }
+
+/* Label */
+.forge-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #666;
+  text-transform: uppercase;
+}
+
+/* Section prefix slash */
+.slash-prefix::before {
+  content: '/ ';
+  color: var(--acid);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+}
+
+/* Status pills */
+.pill-todo { background: rgba(255,255,255,0.06); color: #888; border: 1px solid #2a2a2a; }
+.pill-inprogress { background: rgba(204,255,0,0.08); color: var(--acid); border: 1px solid rgba(204,255,0,0.2); }
+.pill-done { background: rgba(0,255,128,0.06); color: #00ff80; border: 1px solid rgba(0,255,128,0.2); }
+
+/* Priority dots */
+.dot-high { background: #ff4444; box-shadow: 0 0 6px #ff4444; }
+.dot-medium { background: var(--acid); box-shadow: 0 0 6px var(--acid); }
+.dot-low { background: #444; }
+
+/* Overdue glow */
+.overdue-card {
+  border-left: 2px solid #ff4444 !important;
+  box-shadow: inset 3px 0 12px rgba(255,68,68,0.06);
+}
+
+/* Task card hover */
+.task-card {
+  transition: border-color 0.15s, transform 0.15s;
+}
+.task-card:hover {
+  border-color: #333;
+  transform: translateY(-1px);
+}
+.task-card:active { cursor: grabbing; }
+
+/* Kanban drop zone */
+.drop-active {
+  border-color: rgba(204,255,0,0.3) !important;
+  background: rgba(204,255,0,0.02) !important;
+}
+
+/* Number display */
+.stat-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  line-height: 1;
+}
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Page transitions */
+.page-enter {
+  animation: pageIn 0.25s ease forwards;
+}
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Select */
+select.forge-input option { background: #111; }
+
+/* Cursor blink */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.cursor-blink { animation: blink 1.2s step-end infinite; }
